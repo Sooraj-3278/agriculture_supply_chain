@@ -74,5 +74,3 @@ if st.button("Predict"):
     elif risk_label == "Low":
         st.success(f"✅ Low Risk / Safe!")
     
-    else:
-        st.info(f"ℹ️ Prediction: {risk_label}")
