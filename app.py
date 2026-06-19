@@ -38,8 +38,8 @@ Global_Price_Index = st.number_input("Global Price Index", value=0.0)
 
 
 if st.button("Predict"):
-    scaled_minmax = min_max_scaler.transform([['Port_Congestion_Index']])[0]
-    scaled_standard = std_scaler.transform([['Spoilage_Risk_Score','Agri_Supply_Chain_Risk_Score','Post_Harvest_Loss_pct','Global_Price_Index']])[0]
+    scaled_minmax = minmax_scaler.transform([['Port_Congestion_Index']])[0]
+    scaled_standard = standard_scaler.transform([['Spoilage_Risk_Score','Agri_Supply_Chain_Risk_Score','Post_Harvest_Loss_pct','Global_Price_Index']])[0]
     scaled_robust = robust_scaler.transform([['Food_Safety_Risk_Index','Exchange_Rate_Index','Price_Volatility_Index']])[0]
 
     features = [
