@@ -55,13 +55,13 @@ if st.button("Predict"):
 
 
     st.subheader("Prediction Result:")
-    predicted_risk = risk_label
 
-if predicted_risk == "Moderate":
+if risk_label == "Moderate":
     st.warning(f"⚠️ Moderate Risk Detected!")
     
-elif predicted_risk == "Low":
+elif risk_label == "Low":
     st.success(f"✅ Low Risk / Safe!")
     
 else:
+    st.info(f"ℹ️ Prediction: {risk_label}")
     st.info(f"ℹ️ Prediction: {predicted_risk}")
