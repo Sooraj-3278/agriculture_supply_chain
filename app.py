@@ -44,13 +44,21 @@ if st.button("Predict"):
 
     features = [
        scaled_standard[0],
+    #Spoilage_Risk_Score
        scaled_standard[1],
+    #Agri_Supply_Chain_Risk_Score
        scaled_standard[2],
+    #Post_Harvest_Loss_pct
        scaled_minmax[0],
+   #Port_Congestion_Index
        scaled_robust[2],
+    #Price_Volatility_Index
        scaled_robust[0],
+    #Food_Safety_Risk_Index
        scaled_robust[1],
+    #Exchange_Rate_Risk_Index
        scaled_standard[3]
+        
     ]
 
 
@@ -61,16 +69,17 @@ if st.button("Predict"):
 
     features_array = np.array([features])
     prediction = model.predict(features_array)
-    risk_label = le_risk.inverse_transform([prediction[0]])[0]
+    raw_predicted_number = prediction[0]
+    st.write(f"{raw_predicted_number}")
 
 
 
 
     st.subheader("Prediction Result:")
 
-    if risk_label == "Moderate":
+    #if risk_label == "Moderate":
         st.warning(f"⚠️ Moderate Risk Detected!")
     
-    elif risk_label == "Low":
+    #elif risk_label == "Low":
         st.success(f"✅ Low Risk / Safe!")
     
