@@ -11,10 +11,8 @@ import streamlit as st
 import joblib
 import numpy as np
 
-
-st.title("Agriculture Supply Chain Risk Prediction",
-        page_icon="🌾",
-    layout="wide")
+st.set_page_config(page_icon="🌾🚜", layout="wide")
+st.title("Agriculture Supply Chain Risk Prediction")
 st.write("Please enter the details below to predict risk:")
 
 model_path = 'log_reg_model.pkl'
