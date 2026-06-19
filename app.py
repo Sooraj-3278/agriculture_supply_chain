@@ -17,7 +17,8 @@ st.write("Please enter the details below to predict risk:")
 
 model_path = 'log_reg_model.pkl'
 model = joblib.load(model_path)
-
+le_risk_path ='label_encoder_risk.pkl'
+le_risk = joblib.load(le_risk_path)
 expected_features = model.n_features_in_
 
 st.info(f"Your model needed features: {expected_features}")
@@ -47,13 +48,16 @@ if st.button("Predict"):
         features = features[:expected_features]
 
     features_array = np.array([features])
-
+    scaler= joblib.load(
 
     prediction = model.predict(features_array)
+    risk_label = le_risk.inverse_transform(prediction[0])[0]
+
+
 
 
     st.subheader("Prediction Result:")
-    if prediction[0] == 1:
+     if risk_label == "Moderate":
         st.error("Moderate Risk Detected! ⚠️")
     else:
         st.success("Low Risk / Safe! ✅")
