@@ -64,4 +64,3 @@ elif risk_label == "Low":
     
 else:
     st.info(f"ℹ️ Prediction: {risk_label}")
-    st.info(f"ℹ️ Prediction: {predicted_risk}")
