@@ -55,7 +55,7 @@ if st.button("Predict"):
 
 
     st.subheader("Prediction Result:")
-    predicted_risk = risk_label[0]
+    predicted_risk = risk_label
 
 if predicted_risk == "Moderate":
     st.warning(f"⚠️ Moderate Risk Detected!")
