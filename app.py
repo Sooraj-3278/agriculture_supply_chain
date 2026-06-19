@@ -49,7 +49,7 @@ if st.button("Predict"):
 
     features_array = np.array([features])
     prediction = model.predict(features_array)
-    risk_label = le_risk.inverse_transform(prediction[0])[0]
+    risk_label = le_risk.inverse_transform([prediction[0]])[0]
 
 
 
