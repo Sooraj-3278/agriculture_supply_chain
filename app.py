@@ -23,6 +23,10 @@ expected_features = model.n_features_in_
 
 st.info(f"Your model needed features: {expected_features}")
 
+minmax_scaler = joblib.load('min_max_scaler.pkl')
+standard_scaler = joblib.load('std_scaler.pkl')
+robust_scaler = joblib.load('robust_scaler.pkl')
+
 Spoilage_Risk_Score = st.number_input("Spoilage Risk Score", value=0.0)
 Agri_Supply_Chain_Risk_Score = st.number_input("Agri Supply Chain Risk Score", value=0.0)
 Post_Harvest_Loss_pct = st.number_input("Post Harvest Loss %", value=0.0)
@@ -34,11 +38,19 @@ Global_Price_Index = st.number_input("Global Price Index", value=0.0)
 
 
 if st.button("Predict"):
+    scaled_minmax = min_max_scaler.transform([['Port_Congestion_Index']])[0]
+    scaled_standard = std_scaler.transform([['Spoilage_Risk_Score','Agri_Supply_Chain_Risk_Score','Post_Harvest_Loss_pct','Global_Price_Index']])[0]
+    scaled_robust = robust_scaler.transform([['Food_Safety_Risk_Index','Exchange_Rate_Index','Price_Volatility_Index']])[0]
 
     features = [
-        Spoilage_Risk_Score, Agri_Supply_Chain_Risk_Score, Post_Harvest_Loss_pct,
-        Port_Congestion_Index, Price_Volatility_Index, Food_Safety_Risk_Index,
-        Exchange_Rate_Index, Global_Price_Index
+       scaled_standard[0],
+       scaled_standard[1],
+       scaled_standard[2],
+       scaled_minmax[0],
+       scaled_robust[2],
+       scaled_robust[0],
+       scaled_robust[1],
+       scaled_standard[3]
     ]
 
 
